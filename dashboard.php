@@ -1,10 +1,23 @@
-<!-- Imports -->
+<?php  session_start(); ?>
 
+<!-- Imports -->
+<?php require_once './includes/db.php';  ?>
 <!-- PHP -->
 <?php
 
-$username = $_POST['username'];
-$password = $_POST['passwd'];
+$logged_user_id = $_SESSION['loggedInUserId'];
+$remember_me = $_SESSION['remember_me'];
+
+$query = "SELECT * FROM users WHERE users.id='$logged_user_id'";
+$result = mysqli_query($connect, $query);
+$num_rows = mysqli_num_rows($result);
+
+if($num_rows > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $username = $row['username'];
+    }
+}
+
 ?>
 
 
@@ -27,8 +40,9 @@ $password = $_POST['passwd'];
 <body>
     <div class="container">
     <p>THis is the dashboard</p>
-    <p>Username: <?= $username ?></p>
-    <p>Password: <?= $password ?></p>
+    <p>User Id: <?= $logged_user_id ?></p>
+    <p>Remember ME: <?= $remember_me ?></p>
+    <p>Username: <?= $username?></p>
     </div>
 
     <!-- Javascript -->

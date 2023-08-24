@@ -24,6 +24,8 @@
 <body>
     <div class="container">
     <p>Home Page</p>
+    <a href="<?= $BASE_URL  ?>login.php" class="btn btn-primary">Sign In</a>
+    <a href="<?= $BASE_URL ?>register.php"  class="btn btn-secondary">Sign Up</a>
     </div>
 </body>
 
